@@ -1,3 +1,4 @@
+/*
 This file is part of the HemoCell library
 
 HemoCell is developed and maintained by the Computational Science Lab 
@@ -19,3 +20,33 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#ifndef HEMOCELL_RBCHIGHORDERMODEL_H
+#define HEMOCELL_RBCHIGHORDERMODEL_H
+
+#include "config.h"
+#include "cellMechanics.h"
+#include "hemoCellField.h"
+
+namespace hemo {
+
+class RbcHighOrderModel : public CellMechanics {
+
+  public:
+  //Variables
+  HemoCellField & cellField;
+  const T k_volume;
+  const T k_area;
+  const T k_link;
+  const T k_bend;
+  const T eta_m;
+
+  public:
+  RbcHighOrderModel(Config & modelCfg_, HemoCellField & cellField_) ;
+
+  void ParticleMechanics(map<int,vector<HemoCellParticle *>> & particles_per_cell, const map<int,bool> &lpc, size_t ctype) ;
+
+  void statistics();
+};
+}
+#endif

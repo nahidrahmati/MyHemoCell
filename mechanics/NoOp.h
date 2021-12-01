@@ -1,3 +1,4 @@
+/*
 This file is part of the HemoCell library
 
 HemoCell is developed and maintained by the Computational Science Lab 
@@ -19,3 +20,20 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#ifndef HEMOCELL_NOOP_H
+#define HEMOCELL_NOOP_H
+#include "cellMechanics.h"
+class NoOp : public CellMechanics {
+  public:
+  NoOp() :CellMechanics() {};
+  NoOp(Config & cfg, HemoCellField & cellfield) :CellMechanics() {};
+
+
+  inline void ParticleMechanics(map<int,vector<HemoCellParticle *>>,map<int,bool>, pluint ctype) {} ;
+  inline void statistics () {
+    cerr << "Mechanical model is NoOp";
+  }
+};
+
+#endif

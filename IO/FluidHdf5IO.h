@@ -1,3 +1,4 @@
+/*
 This file is part of the HemoCell library
 
 HemoCell is developed and maintained by the Computational Science Lab 
@@ -19,3 +20,19 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#ifndef FLUID_HDF5_IO_H
+#define FLUID_HDF5_IO_H
+
+#include "hemoCellFields.h"
+
+namespace hemo {
+void writeFluidField_HDF5(HemoCellFields& cellFields, T dx, T dt, plint iter, string preString="");
+void writeCEPACField_HDF5(HemoCellFields& cellfields, T dx, T dt, plint iter, string preString=""); 
+
+#ifndef hsize_t
+typedef long long unsigned int hsize_t;
+#endif
+
+}
+#endif

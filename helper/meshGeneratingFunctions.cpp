@@ -1,3 +1,4 @@
+/*
 This file is part of the HemoCell library
 
 HemoCell is developed and maintained by the Computational Science Lab 
@@ -19,3 +20,19 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#include "meshGeneratingFunctions.h"
+
+#include <vector>
+
+namespace plb {
+  
+TriangularSurfaceMesh<T> * constructStringMeshFromConfig(hemo::Config & cfg) {
+  std::vector<plb::Array<T,3>> * vertexList = new std::vector<plb::Array<T,3>>();
+  std::vector<plint> * emanatingEdgesList = new std::vector<plint>();
+  std::vector<Edge> * edgeList = new std::vector<Edge>();
+  TriangularSurfaceMesh<T> * mesh = new TriangularSurfaceMesh<T>(*vertexList,*emanatingEdgesList,*edgeList);
+  return mesh;
+}
+
+}

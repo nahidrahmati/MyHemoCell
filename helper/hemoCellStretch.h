@@ -1,3 +1,4 @@
+/*
 This file is part of the HemoCell library
 
 HemoCell is developed and maintained by the Computational Science Lab 
@@ -19,3 +20,39 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#ifndef HEMOCELLSTRETCH_H
+#define HEMOCELLSTRETCH_H
+
+#include "hemoCellFields.h"
+#include "hemoCellFunctional.h"
+
+namespace hemo {
+  
+class HemoCellStretch {
+  public:
+
+  HemoCellStretch(HemoCellField & cellfield_, unsigned int n_forced_lsps_, T external_force_);
+  void applyForce();
+  
+  class FindForcedLsps: public HemoCellFunctional {
+   void processGenericBlocks(Box3D, std::vector<AtomicBlock3D*>);
+   FindForcedLsps * clone() const;
+  };
+  
+  class ForceForcedLsps: public HemoCellFunctional {
+   void processGenericBlocks(Box3D, std::vector<AtomicBlock3D*>);
+   ForceForcedLsps * clone() const;
+  };
+  
+  //Vertex id of lsps
+  static vector<plint> lower_lsps;
+  static vector<plint> upper_lsps;
+  
+  HemoCellField & cellfield;
+  static unsigned int n_forced_lsps;
+  static T external_force;
+  static T scale;
+};
+}
+#endif
